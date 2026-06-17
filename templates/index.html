@@ -1,0 +1,86 @@
+{% set page_title = 'NFT Gifts' %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page_title }}</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <header class="container">
+    <h1>🎁 NFT-подарки</h1>
+    <p class="muted">Выберите анимированный подарок и отправьте его получателю в Telegram.</p>
+  </header>
+
+  <main class="container grid">
+    <section>
+      <h2>Доступные подарки</h2>
+      <div class="cards">
+        {% for g in gifts %}
+        <div class="card">
+          <div class="media">
+            {% if g.telegram_file_id %}
+            <video autoplay loop muted playsinline src="/media/telegram/{{ g.telegram_file_id }}"></video>
+            {% elif g.gif_url %}
+              {% if g.gif_url.endswith('.mp4') %}
+                <video autoplay loop muted playsinline src="{{ g.gif_url }}"></video>
+              {% else %}
+                <img src="{{ g.gif_url }}" alt="{{ g.title }}" />
+              {% endif %}
+            {% else %}
+              <div class="placeholder">Нет превью</div>
+            {% endif %}
+          </div>
+          <div class="content">
+            <h3>{{ g.title }}</h3>
+            {% if g.description %}<p class="muted">{{ g.description }}</p>{% endif %}
+            <form method="post" action="/send" class="row">
+              <input type="hidden" name="gift_id" value="{{ g.id }}" />
+              <input type="text" name="recipient" placeholder="Получатель (chat_id или @username)" required />
+              <input type="text" name="message" placeholder="Сообщение (необязательно)" />
+              <button type="submit">Отправить</button>
+            </form>
+          </div>
+        </div>
+        {% else %}
+        <p class="muted">Пока нет добавленных подарков.</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section>
+      <h2>Анимации из Telegram</h2>
+      <p class="muted">Эти анимации получены ботом из ваших сообщений. Вы можете выбрать любую и отправить её как подарок.</p>
+      <div class="cards">
+        {% for m in medias %}
+        <div class="card">
+          <div class="media">
+            {% if m.file_path %}
+              <video autoplay loop muted playsinline src="/media/telegram/{{ m.file_id }}"></video>
+            {% else %}
+              <div class="placeholder">Telegram file_id: {{ m.file_id }}</div>
+            {% endif %}
+          </div>
+          <div class="content">
+            <form method="post" action="/send" class="row">
+              <input type="hidden" name="direct_animation_url" value="{% if m.file_path %}/media/telegram/{{ m.file_id }}{% endif %}" />
+              <input type="hidden" name="direct_file_id" value="{{ m.file_id }}" />
+              <input type="text" name="recipient" placeholder="Получатель (chat_id или @username)" required />
+              <input type="text" name="message" placeholder="Сообщение (необязательно)" />
+              <button type="submit">Отправить</button>
+            </form>
+          </div>
+        </div>
+        {% else %}
+        <p class="muted">Пока нет загруженных анимаций. Отправьте боту GIF/анимацию и админ обновит список.</p>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <footer class="container muted small">
+    <p>Сервер на FastAPI. Статика и шаблоны — OK.</p>
+  </footer>
+</body>
+</html>

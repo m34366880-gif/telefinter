@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ — {{ 'Редактировать' if gift else 'Новый' }} подарок</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>{{ 'Редактировать' if gift else 'Новый' }} подарок</h1>
+
+    <form method="post" action="{{ '/admin/gifts/' ~ gift.id ~ '/update' if gift else '/admin/gifts' }}" class="form">
+      <label>
+        Название
+        <input type="text" name="title" value="{{ gift.title if gift else '' }}" required />
+      </label>
+      <label>
+        Описание
+        <textarea name="description" rows="3">{{ gift.description if gift else '' }}</textarea>
+      </label>
+      <label>
+        Ссылка на GIF/Видео
+        <input type="url" name="gif_url" value="{{ gift.gif_url if gift else '' }}" placeholder="https://...gif|mp4" />
+      </label>
+      <label>
+        Telegram file_id
+        <input type="text" name="telegram_file_id" value="{{ gift.telegram_file_id if gift else '' }}" placeholder="AAQ..." />
+      </label>
+
+      <div class="row">
+        <button type="submit">Сохранить</button>
+        <a href="/admin/gifts" class="button secondary">Отмена</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

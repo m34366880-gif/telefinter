@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ — Подарки</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="row space-between">
+      <h1>🎛️ Админ: Подарки</h1>
+      <nav>
+        <a href="/admin/telegram">Импорт из Telegram</a>
+        <a class="button" href="/admin/gifts/new">Добавить подарок</a>
+      </nav>
+    </header>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Название</th>
+          <th>Описание</th>
+          <th>GIF/Видео</th>
+          <th>Telegram file_id</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for g in gifts %}
+        <tr>
+          <td>{{ g.id }}</td>
+          <td>{{ g.title }}</td>
+          <td class="muted">{{ g.description }}</td>
+          <td>
+            {% if g.gif_url %}
+              <a href="{{ g.gif_url }}" target="_blank">просмотр</a>
+            {% else %}—{% endif %}
+          </td>
+          <td class="small">{{ g.telegram_file_id or '—' }}</td>
+          <td>
+            <a href="/admin/gifts/{{ g.id }}/edit">Редактировать</a>
+            <form method="post" action="/admin/gifts/{{ g.id }}/delete" class="inline">
+              <button type="submit" class="link danger" onclick="return confirm('Удалить подарок?')">Удалить</button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="muted">Нет подарков</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

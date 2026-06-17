@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ — Импорт из Telegram</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="row space-between">
+      <h1>Импорт анимаций из Telegram</h1>
+      <form method="post" action="/admin/telegram/fetch">
+        <button type="submit">Обновить из бота</button>
+      </form>
+    </header>
+
+    <p class="muted">Отправляйте боту GIF/анимации. Нажмите «Обновить», чтобы подтянуть последние сообщения (используется getUpdates).</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Превью</th>
+          <th>file_id</th>
+          <th>Размер</th>
+          <th>Mime</th>
+          <th>Подпись</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in medias %}
+        <tr>
+          <td style="width:160px">
+            {% if m.file_path %}
+              <video autoplay loop muted playsinline src="/media/telegram/{{ m.file_id }}" style="max-width:150px"></video>
+            {% else %}
+              —
+            {% endif %}
+          </td>
+          <td class="small">{{ m.file_id }}</td>
+          <td class="small">{{ m.size or '—' }} байт</td>
+          <td class="small">{{ m.mime_type or '—' }}</td>
+          <td class="small">{{ m.caption or '—' }}</td>
+          <td>
+            <form method="post" action="/admin/telegram/import">
+              <input type="hidden" name="file_id" value="{{ m.file_id }}" />
+              <input type="text" name="title" placeholder="Название" required />
+              <input type="text" name="description" placeholder="Описание (необязательно)" />
+              <button type="submit">Импортировать</button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="muted">Нет загруженных анимаций. Нажмите «Обновить».</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p><a href="/admin/gifts">← Подарки</a></p>
+  </div>
+</body>
+</html>

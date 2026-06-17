@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Результат отправки</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    {% if ok %}
+      <div class="alert success">✅ Подарок отправлен через Telegram Bot API.</div>
+      <p><a href="/">Вернуться на главную</a></p>
+    {% else %}
+      <div class="alert error">❌ Ошибка отправки: {{ error }}</div>
+      <p><a href="/">Назад</a></p>
+    {% endif %}
+  </div>
+</body>
+</html>
