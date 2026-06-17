@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleFinter Pro — Элитный стандарт автоматизации</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk & Urbanist -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#030305',
+                            card: '#090a10',
+                            cardMuted: '#0d0f17',
+                            border: '#161926',
+                            borderActive: '#00f0ff',
+                            accent: '#00f0ff',
+                            accentDim: '#00b8c4',
+                            blue: '#3b82f6',
+                            red: '#ff2d55',
+                            green: '#05ffc4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Urbanist', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030305;
+            font-family: 'Urbanist', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Анимированный цифровой фон */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+        }
+
+        .ambient-glow-1 {
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, transparent 60%);
+        }
+
+        .ambient-glow-2 {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
+        }
+
+        /* Премиальное свечение неона */
+        .neon-border-glow {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
+        }
+
+        .neon-text-glow {
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+        }
+
+        .neon-btn-glow {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030305;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #161926;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col justify-between relative cyber-grid">
+
+    <!-- Фоновые интерактивные свечения -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] ambient-glow-1 animate-pulse" style="animation-duration: 10s;"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] ambient-glow-2 animate-pulse" style="animation-duration: 15s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center z-50">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="goToSlide(0)">
+            <div class="w-11 h-11 bg-brand-card border border-brand-border rounded-xl flex items-center justify-center neon-border-glow transition-all duration-300 hover:border-brand-accent">
+                <i data-lucide="shield-alert" class="w-6 h-6 text-brand-accent"></i>
+            </div>
+            <div>
+                <span class="text-2xl font-black tracking-tight text-white font-heading">Tele<span class="text-brand-accent neon-text-glow">Finter</span></span>
+                <span class="text-[9px] block text-slate-500 uppercase tracking-widest font-bold">Session Security Hub</span>
+            </div>
+        </div>
+        <div>
+            <button onclick="goToSlide(6)" class="px-5 py-2.5 rounded-xl bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-sm font-bold hover:bg-brand-accent hover:text-brand-bg hover:neon-btn-glow transition-all duration-300">
+                Запустить терминал
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Slides Container -->
+    <main class="flex-grow flex items-center justify-center px-4 py-6 relative z-10 w-full max-w-6xl mx-auto">
+        
+        <!-- Slide 1: Welcome (Intro) -->
+        <div id="slide-0" class="w-full bg-brand-card/90 border border-brand-border p-8 md:p-14 rounded-3xl flex flex-col md:flex-row items-center gap-10 relative overflow-hidden transition-all duration-500 shadow-2xl">
+            <div class="flex-1 space-y-6 text-left">
+                <div class="inline-flex items-center space-x-2 bg-brand-accent/10 text-brand-accent px-4 py-1.5 rounded-full text-xs font-semibold border border-brand-accent/20">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-brand-accent"></i>
+                    <span class="uppercase tracking-wider">Элитная автоматизация нового поколения</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold font-heading text-white leading-tight">
+                    Контролируйте сессии на уровне <span class="text-brand-accent neon-text-glow">Архитектора</span>
+                </h1>
+                <p class="text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                    Защищенная мультифункциональная панель управления Telegram-сессиями. Полный контроль, глубокое распределение ресурсов и максимальный уровень приватности, адаптированный под высокие нагрузки.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <button onclick="nextSlide()" class="px-8 py-4 rounded-xl bg-brand-accent hover:bg-brand-accentDim text-black font-black hover:neon-btn-glow transition-all duration-300 flex items-center space-x-3 text-base">
+                        <span>Начать погружение</span>
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 w-full flex justify-center relative">
+                <div class="w-72 h-72 rounded-full bg-brand-accent/5 absolute filter blur-3xl"></div>
+                <div class="border border-brand-border bg-brand-cardMuted p-8 rounded-2xl w-full max-w-[360px] relative z-10 shadow-2xl">
+                    <div class="flex justify-between items-center border-b border-brand-border pb-4 mb-5">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider font-heading">Панель управления</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-green animate-pulse"></span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-brand-bg/80 border border-brand-border rounded-xl p-3.5 flex items-center justify-between">
+                            <span class="text-xs font-medium text-slate-300">Активных задач</span>
+                            <span class="text-brand-accent font-bold font-heading">14/14</span>
+                        </div>
+                        <div class="bg-brand-bg/80 border border-brand-border rounded-xl p-3.5 flex items-center justify-between">
+                            <span class="text-xs font-medium text-slate-300">Сессий в работе</span>
+                            <span class="text-brand-accent font-bold font-heading">120</span>
+                        </div>
+                        <div class="space-y-1.5 pt-2">
+                            <div class="flex justify-between text-[11px] font-bold text-slate-400 uppercase">
+                                <span>Загрузка пула</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="h-2 bg-brand-border rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-brand-accent to-brand-blue w-4/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Security & Total Isolation -->
+        <div id="slide-1" class="hidden w-full bg-brand-card/90 border border-brand-border p-8 md:p-14 rounded-3xl flex flex-col md:flex-row items-center gap-10 relative overflow-hidden transition-all duration-500 shadow-2xl">
+            <div class="flex-1 w-full flex justify-center relative order-2 md:order-1">
+                <div class="w-72 h-72 rounded-full bg-brand-blue/5 absolute filter blur-3xl"></div>
+                <div class="border border-brand-border bg-brand-cardMuted p-8 rounded-2xl w-full max-w-[340px] relative z-10 shadow-2xl text-center space-y-6">
+                    <div class="w-20 h-20 bg-brand-blue/10 border border-brand-blue/30 rounded-3xl flex items-center justify-center mx-auto shadow-lg">
+                        <i data-lucide="shield-check" class="w-10 h-10 text-brand-blue"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-lg font-bold text-white font-heading">Полная конфиденциальность</h4>
+                        <p class="text-xs text-slate-300 font-light">Шифрование контейнеров на уровне системы</p>
+                    </div>
+                    <div class="bg-brand-bg border border-brand-border p-4 rounded-xl text-left">
+                        <div class="flex items-center space-x-2.5 text-xs text-brand-green font-bold">
+                            <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span>
+                            <span>Токен авторизации изолирован</span>
+                        </div>
+                        <span class="text-[10px] text-slate-400 font-mono block mt-2 tracking-wide">ID_HASH: f8a9b233e100cde7112</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 space-y-6 order-1 md:order-2 text-left">
+                <div class="inline-flex items-center space-x-2 bg-brand-blue/10 text-brand-blue px-4 py-1.5 rounded-full text-xs font-semibold border border-brand-blue/20">
+                    <i data-lucide="fingerprint" class="w-3.5 h-3.5"></i>
+                    <span class="uppercase tracking-wider">Глубокое шифрование</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black font-heading text-white leading-tight">
+                    Ваши сессии принадлежат <span class="text-brand-blue">только Вам</span>
+                </h2>
+                <p class="text-slate-300 leading-relaxed text-base font-light">
+                    Мы разработали архитектуру, исключающую любые риски перехвата или утечки ваших .session файлов. Все хранилища строго контейнеризированы, а трафик шифруется. 
+                </p>
+                <div class="space-y-3.5 text-sm text-slate-200">
+                    <div class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-brand-green mr-3"></i> <span>Уникальная привязка сессий к Вашему цифровому ключу</span></div>
+                    <div class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-brand-green mr-3"></i> <span>Передача данных исключительно по защищенным каналам HTTPS</span></div>
+                    <div class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-brand-green mr-3"></i> <span>Абсолютная автономия и изоляция баз данных</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: All Modules Grid -->
+        <div id="slide-2" class="hidden w-full bg-brand-card/90 border border-brand-border p-8 md:p-12 rounded-3xl flex flex-col justify-between relative overflow-hidden transition-all duration-500 shadow-2xl">
+            <div class="text-center space-y-4 mb-8">
+                <div class="inline-flex items-center space-x-2 bg-brand-accent/10 text-brand-accent px-4 py-1.5 rounded-full text-xs font-semibold border border-brand-accent/20">
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                    <span class="uppercase tracking-wider">Максимальный потенциал</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold font-heading text-white">Мощный арсенал из 10 модулей</h2>
+                <p class="text-slate-300 max-w-2xl mx-auto text-sm md:text-base font-light">Вся экосистема инструментов для работы с аккаунтами собрана на едином веб-интерфейсе. Управление без задержек и дополнительных программ.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="p-5 bg-brand-cardMuted/80 border border-brand-border rounded-2xl flex items-start space-x-4 transition-all duration-300 hover:border-brand-accent/40 hover:translate-y-[-2px]">
+                    <div class="p-3 bg-brand-accent/10 rounded-xl text-brand-accent"><i data-lucide="users" class="w-6 h-6"></i></div>
+                    <div>
+                        <h4 class="font-bold text-base text-white font-heading">Менеджер аккаунтов</h4>
+                        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">Управление сессиями, легкий импорт, экспорт и управление 2FA-паролями.</p>
+                    </div>
+                </div>
+                <div class="p-5 bg-brand-cardMuted/80 border border-brand-border rounded-2xl flex items-start space-x-4 transition-all duration-300 hover:border-brand-accent/40 hover:translate-y-[-2px]">
+                    <div class="p-3 bg-brand-accent/10 rounded-xl text-brand-accent"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+                    <div>
+                        <h4 class="font-bold text-base text-white font-heading">Асинхронный Валидатор</h4>
+                        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">Мгновенная проверка работоспособности сессий на экстремальных скоростях.</p>
+                    </div>
+                </div>
+                <div class="p-5 bg-brand-cardMuted/80 border border-brand-border rounded-2xl flex items-start space-x-4 transition-all duration-300 hover:border-brand-accent/40 hover:translate-y-[-2px]">
+                    <div class="p-3 bg-brand-accent/10 rounded-xl text-brand-accent"><i data-lucide="refresh-cw" class="w-6 h-6"></i></div>
+                    <div>
+                        <h4 class="font-bold text-base text-white font-heading">Конвертер сессий</h4>
+                        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">Бесшовный перевод данных из формата .session в расширенный .json.</p>
+                    </div>
+                </div>
+                <div class="p-5 bg-brand-cardMuted/80 border border-brand-border rounded-2xl flex items-start space-x-4 transition-all duration-300 hover:border-brand-accent/40 hover:translate-y-[-2px]">
+                    <div class="p-3 bg-brand-accent/10 rounded-xl text-brand-accent"><i data-lucide="send" class="w-6 h-6"></i></div>
+                    <div>
+                        <h4 class="font-bold text-base text-white font-heading">Массовые рассылки</h4>
+                        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">Оптимизированный модуль спама и приглашений по целевым аудиториям.</p>
+                    </div>
+                </div>
+                <div class="p-5 bg-brand-cardMuted/80 border border-brand-border rounded-2xl flex items-start space-x-4 transition-all duration-300 hover:border-brand-accent/40 hover:translate-y-[-2px]">
+                    <div class="p-3 bg-brand-accent/10 rounded-xl text-brand-accent"><i data-lucide="copy" class="w-6 h-6"></i></div>
+                    <div>
+                        <h4 class="font-bold text-base text-white font-heading">Клонер каналов</h4>
+                        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">Интеллектуальное копирование и синхронизация постов, чатов и медиаданных.</p>
+                    </div>
+                </div>
+                <div class="p-5 bg-brand-cardMuted/80 border border-brand-border rounded-2xl flex items-start space-x-4 transition-all duration-300 hover:border-brand-accent/40 hover:translate-y-[-2px]">
+                    <div class="p-3 bg-brand-accent/10 rounded-xl text-brand-accent"><i data-lucide="zap" class="w-6 h-6"></i></div>
+                    <div>
+                        <h4 class="font-bold text-base text-white font-heading">Статистика & Анализ</h4>
+                        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">Наглядный дашборд с подробными метриками продуктивности сети.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Proxies Monitor -->
+        <div id="slide-3" class="hidden w-full bg-brand-card/90 border border-brand-border p-8 md:p-14 rounded-3xl flex flex-col md:flex-row items-center gap-10 relative overflow-hidden transition-all duration-500 shadow-2xl">
+            <div class="flex-1 space-y-6 text-left">
+                <div class="inline-flex items-center space-x-2 bg-brand-accent/10 text-brand-accent px-4 py-1.5 rounded-full text-xs font-semibold border border-brand-accent/20">
+                    <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                    <span class="uppercase tracking-wider">Максимальная изоляция</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black font-heading text-white leading-tight">
+                    Интегрированный <span class="text-brand-accent neon-text-glow">Прокси-монитор</span>
+                </h2>
+                <p class="text-slate-300 leading-relaxed text-base font-light">
+                    Telegram отслеживает сетевой след аккаунтов. Чтобы защитить вашу сеть от массовых блокировок, TeleFinter позволяет закреплять индивидуальные HTTP/SOCKS5 прокси за каждым конкретным аккаунтом. 
+                </p>
+                <div class="grid grid-cols-2 gap-4 pt-3">
+                    <div class="bg-brand-cardMuted border border-brand-border p-4 rounded-xl text-center">
+                        <span class="text-xl md:text-2xl font-extrabold text-brand-green font-heading">HTTP / SOCKS5</span>
+                        <p class="text-xs text-slate-400 mt-1 font-light">Полная поддержка протоколов</p>
+                    </div>
+                    <div class="bg-brand-cardMuted border border-brand-border p-4 rounded-xl text-center">
+                        <span class="text-xl md:text-2xl font-extrabold text-brand-accent font-heading">0.05 ms</span>
+                        <p class="text-xs text-slate-400 mt-1 font-light">Асинхронная проверка</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 w-full flex justify-center relative">
+                <div class="w-72 h-72 rounded-full bg-brand-accent/5 absolute filter blur-3xl"></div>
+                <div class="border border-brand-border bg-brand-cardMuted p-6 rounded-2xl w-full max-w-[360px] relative z-10 shadow-2xl space-y-4">
+                    <div class="flex justify-between items-center border-b border-brand-border pb-3.5">
+                        <div class="flex items-center space-x-2.5">
+                            <i data-lucide="network" class="w-4 h-4 text-brand-accent"></i>
+                            <span class="text-xs font-bold text-white uppercase tracking-wider font-heading">Активные каналы</span>
+                        </div>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20 font-bold">14 Online</span>
+                    </div>
+                    <div class="space-y-3 max-h-[180px] overflow-y-auto pr-1">
+                        <div class="flex items-center justify-between text-xs p-3 rounded-xl bg-brand-bg border border-brand-border">
+                            <span class="font-mono text-slate-200">194.26.112.55:8000</span>
+                            <span class="flex items-center text-brand-green font-bold"><span class="w-1.5 h-1.5 rounded-full bg-brand-green mr-1.5 animate-pulse"></span>12ms</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs p-3 rounded-xl bg-brand-bg border border-brand-border">
+                            <span class="font-mono text-slate-200">45.138.8.210:9221</span>
+                            <span class="flex items-center text-brand-green font-bold"><span class="w-1.5 h-1.5 rounded-full bg-brand-green mr-1.5 animate-pulse"></span>24ms</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs p-3 rounded-xl bg-brand-bg border border-brand-border opacity-50">
+                            <span class="font-mono text-slate-400">82.102.14.77:3128</span>
+                            <span class="flex items-center text-brand-red font-bold"><span class="w-1.5 h-1.5 rounded-full bg-brand-red mr-1.5"></span>Offline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Human Emulation Engine (Replaces Anti-Abuse details for secrecy) -->
+        <div id="slide-4" class="hidden w-full bg-brand-card/90 border border-brand-border p-8 md:p-14 rounded-3xl flex flex-col md:flex-row items-center gap-10 relative overflow-hidden transition-all duration-500 shadow-2xl">
+            <div class="flex-1 w-full flex justify-center relative order-2 md:order-1">
+                <div class="w-72 h-72 rounded-full bg-brand-red/5 absolute filter blur-3xl"></div>
+                <div class="border border-brand-border bg-brand-cardMuted p-6 rounded-2xl w-full max-w-[340px] relative z-10 shadow-2xl text-center space-y-5">
+                    <div class="w-16 h-16 bg-brand-accent/10 border border-brand-accent/30 rounded-full flex items-center justify-center mx-auto text-brand-accent">
+                        <i data-lucide="eye-off" class="w-8 h-8"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h4 class="text-base font-bold text-white font-heading">Алгоритм Невидимости</h4>
+                        <p class="text-xs text-slate-300 font-light">Автоматическая рандомизация действий</p>
+                    </div>
+                    <div class="text-[10px] text-slate-300 font-mono bg-brand-bg p-4 rounded-xl border border-brand-border text-left space-y-1.5">
+                        <div class="flex justify-between"><span>MTProto Handshake:</span> <span class="text-brand-green">SUCCESS</span></div>
+                        <div class="flex justify-between"><span>UserAgent Emulator:</span> <span class="text-brand-green">ENABLED</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 space-y-6 order-1 md:order-2 text-left">
+                <div class="inline-flex items-center space-x-2 bg-brand-accent/10 text-brand-accent px-4 py-1.5 rounded-full text-xs font-semibold border border-brand-accent/20">
+                    <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-brand-accent"></i>
+                    <span class="uppercase tracking-wider">Максимальная маскировка</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black font-heading text-white leading-tight">
+                    Интеллектуальный <span class="text-brand-accent neon-text-glow">Обход Блокировок</span>
+                </h2>
+                <p class="text-slate-300 leading-relaxed text-base font-light">
+                    В систему интегрированы алгоритмы умной симуляции человеческого поведения. Наш движок автоматически выстраивает динамические задержки, имитирует заполнение данных и распределяет активность во времени, делая ваши сессии абсолютно легитимными для алгоритмов безопасности Telegram.
+                </p>
+                <div class="space-y-3.5 text-sm text-slate-200">
+                    <div class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-brand-green mr-3"></i> <span>Интеллектуальная рандомизация тайм-аутов между запросами</span></div>
+                    <div class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-brand-green mr-3"></i> <span>Умная эмуляция клиентских логов и параметров подключения</span></div>
+                    <div class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-brand-green mr-3"></i> <span>Мгновенный перевод сессий в безопасный режим при рисках флуда</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Premium Access Models -->
+        <div id="slide-5" class="hidden w-full bg-brand-card/90 border border-brand-border p-8 md:p-12 rounded-3xl relative overflow-hidden transition-all duration-500 shadow-2xl">
+            <div class="text-center space-y-4 mb-8">
+                <h2 class="text-3xl md:text-5xl font-extrabold font-heading text-white">Инвестиция в Доминацию</h2>
+                <p class="text-slate-300 max-w-xl mx-auto text-sm md:text-base font-light">Активируйте бесплатный пробный доступ или выберите один из профессиональных планов для масштабного развития.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Free card -->
+                <div class="p-6 bg-brand-cardMuted/80 border border-brand-border rounded-2xl relative flex flex-col justify-between transition-all duration-300 hover:border-brand-accent/40">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-brand-accent uppercase tracking-wider font-heading">Basic Trial</span>
+                            <span class="p-2 bg-brand-card rounded-lg border border-brand-border text-brand-accent"><i data-lucide="shield" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="text-4xl font-extrabold text-white font-heading">$0.00</div>
+                            <div class="text-[11px] text-brand-green font-bold flex items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-green mr-1.5 animate-pulse"></span>
+                                Доступно: 24 часа
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300 border-t border-brand-border/60 pt-4 font-light">
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Лимит: 2 аккаунта</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Базовые модули и Чекер</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Конвертер сессий</li>
+                        </ul>
+                    </div>
+                    <button onclick="goToSlide(6)" class="w-full mt-6 py-3 rounded-xl border border-brand-border bg-brand-card hover:bg-brand-border text-xs font-bold text-slate-200 transition-all duration-300">
+                        Попробовать
+                    </button>
+                </div>
+
+                <!-- Standard card -->
+                <div class="p-6 bg-brand-cardMuted/80 border border-brand-accent/30 rounded-2xl relative flex flex-col justify-between transition-all duration-300 hover:border-brand-accent/60 shadow-[0_0_20px_rgba(0,240,255,0.05)]">
+                    <div class="absolute -top-3.5 right-4 bg-brand-accent text-black px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-wider font-heading">Популярный</div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-white uppercase tracking-wider font-heading">Standard</span>
+                            <span class="p-2 bg-brand-card rounded-lg border border-brand-border text-brand-accent"><i data-lucide="zap" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="text-4xl font-extrabold text-white font-heading">$19.00 <span class="text-xs font-normal text-slate-400">/ мес</span></div>
+                            <div class="text-[11px] text-slate-300 font-light font-heading">Идеально для стабильной работы</div>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-200 border-t border-brand-border/60 pt-4 font-light">
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Лимит: 10 аккаунтов</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Доступ к базовым утилитам</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Модули рассылок и инвайтов</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Прокси-менеджер</li>
+                        </ul>
+                    </div>
+                    <button onclick="goToSlide(6)" class="w-full mt-6 py-3 rounded-xl bg-brand-accent hover:bg-brand-accentDim text-black text-xs font-black hover:neon-btn-glow transition-all duration-300">
+                        Оплатить Standard
+                    </button>
+                </div>
+
+                <!-- Pro Card -->
+                <div class="p-6 bg-brand-card border border-brand-border rounded-2xl relative flex flex-col justify-between transition-all duration-300 hover:border-brand-accent/40">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-slate-300 uppercase tracking-wider font-heading">Pro Ultimate</span>
+                            <span class="p-2 bg-brand-card rounded-lg border border-brand-border text-brand-accent"><i data-lucide="infinity" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="text-4xl font-extrabold text-white font-heading">$49.00 <span class="text-xs font-normal text-slate-400">/ мес</span></div>
+                            <div class="text-[11px] text-slate-300 font-light font-heading">Безграничные возможности</div>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-200 border-t border-brand-border/60 pt-4 font-light">
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> <span class="font-bold text-brand-accent">Безлимит</span> сессий</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Доступны абсолютно все 10 модулей</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Клонеры каналов и постов</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-green mr-2"></i> Приоритетная поддержка 24/7</li>
+                        </ul>
+                    </div>
+                    <button onclick="goToSlide(6)" class="w-full mt-6 py-3 rounded-xl border border-brand-accent/40 bg-brand-accent/10 hover:bg-brand-accent/20 text-brand-accent text-xs font-bold transition-all duration-300">
+                        Активировать PRO
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Direct Access Redirect (No forms, direct action) -->
+        <div id="slide-6" class="hidden w-full max-w-lg bg-brand-card/90 border border-brand-border p-8 md:p-12 rounded-3xl relative overflow-hidden transition-all duration-500 shadow-2xl text-center space-y-8">
+            <div class="w-20 h-20 bg-brand-accent/10 border border-brand-accent/30 rounded-full flex items-center justify-center mx-auto text-brand-accent animate-bounce">
+                <i data-lucide="satellite" class="w-10 h-10"></i>
+            </div>
+            
+            <div class="space-y-3">
+                <h3 class="text-3xl font-extrabold text-white font-heading">Панель управления готова</h3>
+                <p class="text-sm text-slate-300 font-light">Ваш приватный терминал автоматизации полностью готов к безопасной обработке Telegram-сессий.</p>
+            </div>
+            
+            <div class="p-5 bg-brand-cardMuted border border-brand-border rounded-2xl max-w-sm mx-auto space-y-2.5">
+                <div class="flex items-center justify-between text-xs text-slate-300">
+                    <span>Подключение:</span>
+                    <span class="text-brand-green font-bold flex items-center">
+                        <span class="w-2 h-2 rounded-full bg-brand-green mr-1.5 animate-ping"></span>
+                        Безопасно (SSL)
+                    </span>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-300">
+                    <span>Режим времени:</span>
+                    <span class="text-brand-accent font-bold font-heading">MSK (Россия)</span>
+                </div>
+            </div>
+
+            <div class="pt-2">
+                <a href="https://panel-telefinter-v1.serveousercontent.com" target="_blank" class="block w-full py-4 rounded-xl bg-brand-accent hover:bg-brand-accentDim text-black font-extrabold text-center hover:neon-btn-glow transition-all duration-300 text-base uppercase tracking-wider font-heading">
+                    Войти в сервис
+                </a>
+            </div>
+            
+            <button onclick="goToSlide(0)" class="text-xs text-slate-400 hover:text-white transition duration-200 underline">
+                Вернуться на главную
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="w-full max-w-4xl mx-auto px-6 py-8 flex items-center justify-between z-50">
+        <button id="prev-btn" onclick="prevSlide()" class="px-5 py-2.5 rounded-xl bg-brand-card border border-brand-border text-sm font-semibold hover:bg-brand-border transition-all duration-300 flex items-center space-x-2 text-slate-300 hover:text-white disabled:opacity-20 disabled:pointer-events-none">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            <span>Назад</span>
+        </button>
+        
+        <!-- Pagination dots -->
+        <div id="dots" class="flex space-x-2.5">
+            <!-- Rendered by JavaScript -->
+        </div>
+
+        <button id="next-btn" onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-brand-card border border-brand-border text-sm font-semibold hover:bg-brand-border transition-all duration-300 flex items-center space-x-2 text-slate-300 hover:text-white disabled:opacity-20 disabled:pointer-events-none">
+            <span>Далее</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+    </footer>
+
+    <!-- Interactive script -->
+    <script>
+        const totalSlides = 7;
+        let currentSlideIndex = 0;
+
+        // Init dots
+        const dotsContainer = document.getElementById('dots');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-brand-accent w-6' : 'bg-brand-border'}`;
+            dot.setAttribute('onclick', `goToSlide(${i})`);
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateNavigation() {
+            // Hide all slides with animation resets
+            for (let i = 0; i < totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                if (slide) {
+                    slide.classList.add('hidden');
+                    slide.classList.remove('scale-100', 'opacity-100');
+                }
+            }
+
+            // Show current slide
+            const activeSlide = document.getElementById(`slide-${currentSlideIndex}`);
+            if (activeSlide) {
+                activeSlide.classList.remove('hidden');
+                setTimeout(() => {
+                    activeSlide.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            }
+
+            // Update dots
+            const dots = dotsContainer.children;
+            for (let i = 0; i < dots.length; i++) {
+                if (i === currentSlideIndex) {
+                    dots[i].className = 'w-2.5 h-2.5 rounded-full bg-brand-accent w-6 transition-all duration-300';
+                } else {
+                    dots[i].className = 'w-2.5 h-2.5 rounded-full bg-brand-border transition-all duration-300';
+                }
+            }
+
+            // Control navigation buttons state
+            document.getElementById('prev-btn').disabled = currentSlideIndex === 0;
+            document.getElementById('next-btn').disabled = currentSlideIndex === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                updateNavigation();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateNavigation();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateNavigation();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Initialize Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
